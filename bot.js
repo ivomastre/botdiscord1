@@ -122,7 +122,7 @@ function pingPong(receivedMessage,arguments){
     }
 
     if(arguments.length == 0 ){
-        receivedMessage.channel.send(client.ping.toString);
+        receivedMessage.channel.send(client.ping);
     }
     else{
         
