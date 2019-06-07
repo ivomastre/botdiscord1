@@ -113,7 +113,7 @@ client.on('guildMemberAdd', member => {
     channel.send(`Bem vindo ao servidor, ${member}, use !help para conseguir um cargo.`);
   });
 function help(receivedMessage){
-    receivedMessage.channel.send(".tag Para pegar uma tag, a sintaxe é: \n.tag (role) (nome) \nRole: Healer, RDPS,MDPS,TANK.");
+    receivedMessage.channel.send("```.tag Para pegar uma tag, a sintaxe: \n.tag (role) (nome) \nRole: Healer, RDPS,MDPS,TANK.```");
 }
 function pingPong(receivedMessage,arguments){
     console.log("ping pong")
@@ -122,7 +122,7 @@ function pingPong(receivedMessage,arguments){
     }
 
     if(arguments.length == 0 ){
-        receivedMessage.channel.send("Ping pong");
+        receivedMessage.channel.send(client.ping.toString);
     }
     else{
         
