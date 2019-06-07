@@ -57,6 +57,13 @@ function processCommand(receivedMessage) {
         tag(receivedMessage,arguments);
     }
 }
+function essas (x){
+	let y;
+	for(int i=1;i<=x.length;i++){
+		y+=x[i]
+	}
+	return y;
+}
 function tag(receivedMessage, arguments){
     let x = arguments[0]
     let healer=receivedMessage.guild.roles.find(role => role.name === "HEALER");
@@ -66,28 +73,28 @@ function tag(receivedMessage, arguments){
     if(x.toUpperCase()==("HEALER")){
         var roleHealer = receivedMessage.guild.roles.find(role => role.name === "HEALER");
         receivedMessage.member.addRole(healer);
-        receivedMessage.member.setNickname("[HEALER] "+receivedMessage.author.toString());
+        receivedMessage.member.setNickname("[HEALER] "+essas(arguments));
         receivedMessage.member.removeRole(rdps).catch(console.error);
         receivedMessage.member.removeRole(mdps).catch(console.error);
         receivedMessage.member.removeRole(tank).catch(console.error);
     }else if(x.toUpperCase()==("RDPS")){
         var roleHealer = receivedMessage.guild.roles.find(role => role.name === "RDPS");
         receivedMessage.member.addRole(rdps);
-        receivedMessage.member.setNickname("[RDPS] "+receivedMessage.author.toString());
+        receivedMessage.member.setNickname("[RDPS] "+essas(arguments));
         receivedMessage.member.removeRole(healer).catch(console.error);
         receivedMessage.member.removeRole(mdps).catch(console.error);
         receivedMessage.member.removeRole(tank).catch(console.error);
     }else if(x.toUpperCase()==("MDPS")){
         var roleHealer = receivedMessage.guild.roles.find(role => role.name === "MDPS");
         receivedMessage.member.addRole(mdps);
-        receivedMessage.member.setNickname("[MDPS] "+receivedMessage.author.toString());
+        receivedMessage.member.setNickname("[MDPS] "+essas(arguments));
         receivedMessage.member.removeRole(healer).catch(console.error);
         receivedMessage.member.removeRole(rdps).catch(console.error);
         receivedMessage.member.removeRole(tank).catch(console.error);
     }else if(x.toUpperCase()==("TANK")){
         var roleHealer = receivedMessage.guild.roles.find(role => role.name === "TANK");
         receivedMessage.member.addRole(tank);
-        receivedMessage.member.setNickname("[TANK] "+receivedMessage.author.toString());
+        receivedMessage.member.setNickname("[TANK] "+essas(arguments));
         receivedMessage.member.removeRole(rdps).catch(console.error);
         receivedMessage.member.removeRole(mdps).catch(console.error);
         receivedMessage.member.removeRole(healer).catch(console.error);
