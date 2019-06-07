@@ -59,8 +59,9 @@ function processCommand(receivedMessage) {
 }
 function essas (x){
 	let y;
-	for(int i=1;i<=x.length;i++){
+	for(i=1;i<=x.length;i++){
 		y+=x[i]
+		y+=" "
 	}
 	return y;
 }
