@@ -110,7 +110,7 @@ client.on('guildMemberAdd', member => {
     // Do nothing if the channel wasn't found on this server
     if (!channel) return;
     // Send the message, mentioning the member
-    member.setNickname("[NOVATO] "+ member.nickname);
+    member.setNickname(`[NOVATO] ${member.displayName}`);
     channel.send(`Bem vindo ao servidor, ${member}, use !help para conseguir um cargo.`);
   });
 function help(receivedMessage){
