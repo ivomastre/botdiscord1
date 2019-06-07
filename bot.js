@@ -66,28 +66,28 @@ function tag(receivedMessage, arguments){
     if(x.toUpperCase()==("HEALER")){
         var roleHealer = receivedMessage.guild.roles.find(role => role.name === "HEALER");
         receivedMessage.member.addRole(healer);
-        receivedMessage.member.setNickname("[HEALER] "+arguments[1]);
+        receivedMessage.member.setNickname("[HEALER] "+receivedMessage.author.toString());
         receivedMessage.member.removeRole(rdps).catch(console.error);
         receivedMessage.member.removeRole(mdps).catch(console.error);
         receivedMessage.member.removeRole(tank).catch(console.error);
     }else if(x.toUpperCase()==("RDPS")){
         var roleHealer = receivedMessage.guild.roles.find(role => role.name === "RDPS");
         receivedMessage.member.addRole(rdps);
-        receivedMessage.member.setNickname("[RDPS] "+arguments[1]);
+        receivedMessage.member.setNickname("[RDPS] "+receivedMessage.author.toString());
         receivedMessage.member.removeRole(healer).catch(console.error);
         receivedMessage.member.removeRole(mdps).catch(console.error);
         receivedMessage.member.removeRole(tank).catch(console.error);
     }else if(x.toUpperCase()==("MDPS")){
         var roleHealer = receivedMessage.guild.roles.find(role => role.name === "MDPS");
         receivedMessage.member.addRole(mdps);
-        receivedMessage.member.setNickname("[MDPS] "+arguments[1]);
+        receivedMessage.member.setNickname("[MDPS] "+receivedMessage.author.toString());
         receivedMessage.member.removeRole(healer).catch(console.error);
         receivedMessage.member.removeRole(rdps).catch(console.error);
         receivedMessage.member.removeRole(tank).catch(console.error);
     }else if(x.toUpperCase()==("TANK")){
         var roleHealer = receivedMessage.guild.roles.find(role => role.name === "TANK");
         receivedMessage.member.addRole(tank);
-        receivedMessage.member.setNickname("[TANK] "+arguments[1]);
+        receivedMessage.member.setNickname("[TANK] "+receivedMessage.author.toString());
         receivedMessage.member.removeRole(rdps).catch(console.error);
         receivedMessage.member.removeRole(mdps).catch(console.error);
         receivedMessage.member.removeRole(healer).catch(console.error);
