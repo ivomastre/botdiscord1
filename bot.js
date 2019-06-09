@@ -138,7 +138,7 @@ function tag(receivedMessage, arguments){
 
 }
 client.on('guildMemberAdd', member => {
-    if(!(message.guild.roles.find(role => role.name === "NOVATO"))){
+    if(!(member.guild.roles.find(role => role.name === "NOVATO"))){
     member.guild.createRole({
         name: 'NOVATO',
         color: 'BLUE',
