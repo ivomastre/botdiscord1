@@ -67,6 +67,7 @@ function essas (x){
 }
 function tag(receivedMessage, arguments){
     if(receivedMessage.member.roles.find(r => r.name === "NOVATO")){
+        receivedMessage.guild.channel.send("Você é um novato, peça para um OFFICER mudar a sua tag");
         return;
     }
     if(!(message.guild.roles.find(role => role.name === "HEALER"))){
