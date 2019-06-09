@@ -150,7 +150,7 @@ client.on('guildMemberAdd', member => {
     if (!channel) return;
     // Send the message, mentioning the member
     member.setNickname(`[NOVATO] ${member.displayName}`);
-    member.addRole(member.guild.roles.find(role => role.name === "NOVATO"));
+    member.addRole(member.guild.roles.find('name' ,  "NOVATO"));
     channel.send(`Bem vindo ao servidor, ${member}, use !help para conseguir um cargo.`);
   });
 function help(receivedMessage){
