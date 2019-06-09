@@ -66,6 +66,39 @@ function essas (x){
 	return y;
 }
 function tag(receivedMessage, arguments){
+    if(receivedMessage.member.roles.find(r => r.name === "NOVATO")){
+        return;
+    }
+    if(!(message.guild.roles.find(role => role.name === "HEALER"))){
+        member.guild.createRole({
+            name: 'HEALER',
+            color: 'RED',
+          }).catch(console.error)
+    }
+    if(!(message.guild.roles.find(role => role.name === "RANGED DPS"))){
+        member.guild.createRole({
+            name: 'RANGED DPS',
+            color: 'PURPLE',
+          }).catch(console.error)
+    }
+    if(!(message.guild.roles.find(role => role.name === "MEELE DPS"))){
+        member.guild.createRole({
+            name: 'MEELE DPS',
+            color: 'BLACK',
+          }).catch(console.error)
+    }
+    if(!(message.guild.roles.find(role => role.name === "TANK"))){
+        member.guild.createRole({
+            name: 'TANK',
+            color: 'WHITE',
+          }).catch(console.error)
+    }
+    
+
+    
+    
+
+
     let x = arguments[0]
     let healer=receivedMessage.guild.roles.find(role => role.name === "HEALER");
     let rdps = receivedMessage.guild.roles.find(role => role.name === "RANGED DPS");
@@ -105,12 +138,19 @@ function tag(receivedMessage, arguments){
 
 }
 client.on('guildMemberAdd', member => {
+    if(!(message.guild.roles.find(role => role.name === "NOVATO"))){
+    member.guild.createRole({
+        name: 'NOVATO',
+        color: 'BLUE',
+      }).catch(console.error)
+    }
     // Send the message to a designated channel on a server:
     let channel = member.guild.channels.find(ch => ch.name === 'welcome');
     // Do nothing if the channel wasn't found on this server
     if (!channel) return;
     // Send the message, mentioning the member
     member.setNickname(`[NOVATO] ${member.displayName}`);
+    member.addRole(member.guild.roles.find(role => role.name === "NOVATO"));
     channel.send(`Bem vindo ao servidor, ${member}, use !help para conseguir um cargo.`);
   });
 function help(receivedMessage){
