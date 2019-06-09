@@ -70,25 +70,25 @@ function tag(receivedMessage, arguments){
         receivedMessage.guild.channel.send("Você é um novato, peça para um OFFICER mudar a sua tag");
         return;
     }
-    if(!(message.guild.roles.find(role => role.name === "HEALER"))){
+    if(!(receivedMessage.guild.roles.find(role => role.name === "HEALER"))){
         member.guild.createRole({
             name: 'HEALER',
             color: 'RED',
           }).catch(console.error)
     }
-    if(!(message.guild.roles.find(role => role.name === "RANGED DPS"))){
+    if(!(receivedMessage.guild.roles.find(role => role.name === "RANGED DPS"))){
         member.guild.createRole({
             name: 'RANGED DPS',
             color: 'PURPLE',
           }).catch(console.error)
     }
-    if(!(message.guild.roles.find(role => role.name === "MEELE DPS"))){
+    if(!(receivedMessage.guild.roles.find(role => role.name === "MEELE DPS"))){
         member.guild.createRole({
             name: 'MEELE DPS',
             color: 'BLACK',
           }).catch(console.error)
     }
-    if(!(message.guild.roles.find(role => role.name === "TANK"))){
+    if(!(receivedMessage.guild.roles.find(role => role.name === "TANK"))){
         member.guild.createRole({
             name: 'TANK',
             color: 'WHITE',
