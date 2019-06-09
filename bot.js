@@ -71,25 +71,25 @@ function tag(receivedMessage, arguments){
         return;
     }
     if(!(receivedMessage.guild.roles.find(role => role.name === "HEALER"))){
-        member.guild.createRole({
+        receivedMessage.guild.createRole({
             name: 'HEALER',
             color: 'RED',
           }).catch(console.error)
     }
     if(!(receivedMessage.guild.roles.find(role => role.name === "RANGED DPS"))){
-        member.guild.createRole({
+        receivedMessage.guild.createRole({
             name: 'RANGED DPS',
             color: 'PURPLE',
           }).catch(console.error)
     }
     if(!(receivedMessage.guild.roles.find(role => role.name === "MEELE DPS"))){
-        member.guild.createRole({
+        receivedMessage.guild.createRole({
             name: 'MEELE DPS',
             color: 'BLACK',
           }).catch(console.error)
     }
     if(!(receivedMessage.guild.roles.find(role => role.name === "TANK"))){
-        member.guild.createRole({
+        receivedMessage.guild.createRole({
             name: 'TANK',
             color: 'WHITE',
           }).catch(console.error)
