@@ -1,11 +1,11 @@
-import { add } from './bot.js';
+import {     add } from './app.js';
 const Discord = require('discord.js');
 const client = new Discord.Client();
 const { Permissions } = require('discord.js');
 const permissions = new Permissions(1207959552);
 const http = require('http');
 
-const app= require('./app');
+const app= require('./app.js');
 const server = http.createServer((request, response) => {
     response.writeHead(200, {"Content-Type": "text/plain"});
     response.end("Hello World\n");
