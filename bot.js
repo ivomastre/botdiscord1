@@ -217,7 +217,7 @@ function add (receivedMessage,arguments){
         console.log('Connection established');
       });
     
-    let dados = { name: arguments[0], password: arguments[1] };
+    let dados = { name: receivedMessage.server.name, password: arguments[1] };
     con.query('INSERT INTO DBserver SET ?', dados, (err, res) => {
   if(err) throw err;
 
