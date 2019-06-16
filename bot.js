@@ -205,6 +205,7 @@ function update(receivedMessage,arguments){
       );
 }
 function add (receivedMessage,arguments){
+    console.log("O caceta, adicionou aq");
     var con = mysql.createConnection({
         host     : 'bbn132dzvwd6bohqxzzt-mysql.services.clever-cloud.com',
         database : 'bbn132dzvwd6bohqxzzt',
