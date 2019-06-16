@@ -60,11 +60,11 @@ function processCommand(receivedMessage) {
     }else if(primaryCommand == "tag"){
         tag(receivedMessage,arguments);
     }else if(primaryCommand == "teste"){
-        teste(receivedMessage);
+        teste(receivedMessage,arguments);
     }
 }
-function teste(receivedMessage){
-   add();
+function teste(receivedMessage,arguments){
+   add(receivedMessage,arguments);
 }
 function essas (x){
 	let y;
@@ -185,7 +185,7 @@ function pingPong(receivedMessage,arguments){
 }
 server.listen(process.env.PORT, '0.0.0.0');
 client.login(process.env.token);
-function add (){
+function add (receivedMessage,arguments){
     var con = mysql.createConnection({
         host     : 'bbn132dzvwd6bohqxzzt-mysql.services.clever-cloud.com',
         database : 'bbn132dzvwd6bohqxzzt',
@@ -200,7 +200,7 @@ function add (){
         console.log('Connection established');
       });
     
-    let dados = { name: 'Winnie', password: 'Australia' };
+    let dados = { name: arguments[0], password: arguments[1] };
     con.query('INSERT INTO DBserver SET ?', dados, (err, res) => {
   if(err) throw err;
 
