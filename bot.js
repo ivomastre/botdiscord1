@@ -185,6 +185,23 @@ function pingPong(receivedMessage,arguments){
 }
 server.listen(process.env.PORT, '0.0.0.0');
 client.login(process.env.token);
+function update(receivedMessage,arguments){
+    var con = mysql.createConnection({
+        host     : 'bbn132dzvwd6bohqxzzt-mysql.services.clever-cloud.com',
+        database : 'bbn132dzvwd6bohqxzzt',
+        user     : 'un4hr46hmgxbvykk',
+        password : 'lnFvMUNwAQuDFJk5SMiQ'
+    });
+    con.query(
+        'UPDATE DBserver SET password = ? Where name = ?',
+        [arguments[0], receivedMessage.server.name],
+        (err, result) => {
+          if (err) throw err;
+      
+          console.log(`Changed ${result.changedRows} row(s)`);
+        }
+      );
+}
 function add (receivedMessage,arguments){
     var con = mysql.createConnection({
         host     : 'bbn132dzvwd6bohqxzzt-mysql.services.clever-cloud.com',
