@@ -3,6 +3,7 @@ const client = new Discord.Client();
 const { Permissions } = require('discord.js');
 const permissions = new Permissions(1207959552);
 const http = require('http');
+require('app.js');
 const server = http.createServer((request, response) => {
     response.writeHead(200, {"Content-Type": "text/plain"});
     response.end("Hello World\n");
@@ -55,7 +56,12 @@ function processCommand(receivedMessage) {
         multiplicar(receivedMessage,arguments);
     }else if(primaryCommand == "tag"){
         tag(receivedMessage,arguments);
+    }else if(primaryCommand == "teste"){
+        teste(receivedMessage);
     }
+}
+function teste(receivedMessage){
+    add();
 }
 function essas (x){
 	let y;

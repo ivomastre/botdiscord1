@@ -15,8 +15,12 @@ con.connect((err) => {
   console.log('Connection established');
 });
 
-con.end((err) => {
-  // The connection is terminated gracefully
-  // Ensures all previously enqueued queries are still
-  // before sending a COM_QUIT packet to the MySQL server.
+con.end();
+function add (){
+    let dados = { name: 'Winnie', password: 'Australia' };
+    con.query('INSERT INTO DBserver SET ?', dados, (err, res) => {
+  if(err) throw err;
+
+  console.log('Last insert ID:', res.insertId);
 });
+}
