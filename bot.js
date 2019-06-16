@@ -4,6 +4,9 @@ const client = new Discord.Client();
 const { Permissions } = require('discord.js');
 const permissions = new Permissions(1207959552);
 const http = require('http');
+const {
+    search
+  } = require("node-albion-api")
 
 const mysql = require('mysql');
 
@@ -77,12 +80,16 @@ function essas (x){
 	return y;
 }
 function tag(receivedMessage, arguments){
+    var jaison= JSON.parse(search(arguments[1]));
+    console.log(JSON.stringify(jaison, null, 2));
+
     if(receivedMessage.member.roles.find(r => r.name === "NOVATO")){
         receivedMessage.channel.send("Você é um novato, peça para um OFFICER mudar a sua tag");
         return;
     }
-    if(novato.nome.getGuilda!=selecionar(receivedMessage, arguments)){
+    if(arguments[1].getGuilda!=selecionar(receivedMessage, arguments)){
         receivedMessage.channel.send("Você não é dessa guild");
+
     }
     if(!(receivedMessage.guild.roles.find(role => role.name === "HEALER"))){
         receivedMessage.guild.createRole({
