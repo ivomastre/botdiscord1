@@ -221,7 +221,7 @@ function add (receivedMessage,arguments){
       });
     
     let dados = { name: receivedMessage.guild.name, password: arguments[0] };
-    con.query('INSERT INTO DBserver SET name =? password =?', [receivedMessage.guild.name, arguments[0]], (err, res) => {
+    con.query('INSERT INTO DBserver (name, password) VALUES ?', [receivedMessage.guild.name, arguments[0]], (err, res) => {
   if(err) throw err;
 
   console.log('Last insert ID:', res.insertId);
