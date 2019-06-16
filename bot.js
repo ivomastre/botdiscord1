@@ -61,7 +61,7 @@ function processCommand(receivedMessage) {
     }
 }
 function teste(receivedMessage){
-    appJS.add();
+    add();
 }
 function essas (x){
 	let y;
