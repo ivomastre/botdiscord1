@@ -188,8 +188,8 @@ function pingPong(receivedMessage,arguments){
 server.listen(process.env.PORT, '0.0.0.0');
 client.login(process.env.token);
 function update(receivedMessage,arguments){
-    console.log(receivedMessage.member.has("ADMINISTRATOR"));
-    if(!(receivedMessage.member.has("ADMINISTRATOR"))){
+    console.log(receivedMessage.member.hasPermission("ADMINISTRATOR"));
+    if(!(receivedMessage.member.hasPermission("ADMINISTRATOR"))){
         receivedMessage.channel.send("Você não é ADMIN!");
         return;
     }
