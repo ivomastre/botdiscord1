@@ -62,7 +62,7 @@ function processCommand(receivedMessage) {
     }else if(primaryCommand == "teste"){
         teste(receivedMessage,arguments);
     }else if(primaryCommand == "atualizar"){
-        update(receivedMessage,arguments);
+        update(receivedMessage,arguments)
     }
 }
 function teste(receivedMessage,arguments){
@@ -205,7 +205,6 @@ function update(receivedMessage,arguments){
       );
 }
 function add (receivedMessage,arguments){
-    console.log("O caceta, adicionou aq");
     var con = mysql.createConnection({
         host     : 'bbn132dzvwd6bohqxzzt-mysql.services.clever-cloud.com',
         database : 'bbn132dzvwd6bohqxzzt',
@@ -221,10 +220,10 @@ function add (receivedMessage,arguments){
       });
     
     let dados = { name: receivedMessage.guild.name, password: arguments[0] };
-    con.query('INSERT INTO DBserver (name, password) VALUES ?', [receivedMessage.guild.name, arguments[0]], (err, res) => {
+    con.query('INSERT INTO DBserver SET ?', dados, (err, res) => {
   if(err) throw err;
 
   console.log('Last insert ID:', res.insertId);
-  
-});con.end();
+  con.end();
+});
 }
