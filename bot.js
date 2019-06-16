@@ -83,7 +83,7 @@ function essas (x){
 function tag(receivedMessage, arguments){
     try {
     var jaison=JSON.parse(request( "https://gameinfo.albiononline.com/api/gameinfo/search?q={name}".replace("{name}", arguments[1] )));
-    console.log(request( "https://gameinfo.albiononline.com/api/gameinfo/search?q={name}".replace("{name}", arguments[1] )));
+    console.log(request( "https://gameinfo.albiononline.com/api/gameinfo/search?q=IvoMastre"));
     }catch(err){
         console.log(err);
     }
