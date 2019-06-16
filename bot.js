@@ -96,7 +96,7 @@ function tag(receivedMessage, arguments){
     }
     if(jaison.players[0].GuildName!=selecionar(receivedMessage, arguments)){
         receivedMessage.channel.send("Você não é dessa guild");
-
+        return;
     }
     if(!(receivedMessage.guild.roles.find(role => role.name === "HEALER"))){
         receivedMessage.guild.createRole({
@@ -220,6 +220,7 @@ function selecionar(receivedMessage,arguments){
         password : 'lnFvMUNwAQuDFJk5SMiQ'
     });
     con.query('SELECT password FROM DBserver WHERE name = ?', receivedMessage.guild.name);
+    con.end();
 }
 function update(receivedMessage,arguments){
     console.log(receivedMessage.member.hasPermission("ADMINISTRATOR"));
@@ -242,6 +243,7 @@ function update(receivedMessage,arguments){
           console.log(`Changed ${result.changedRows} row(s)`);
         }
       );
+      con.end();
 }
 function add (receivedMessage,arguments){
     var con = mysql.createConnection({
