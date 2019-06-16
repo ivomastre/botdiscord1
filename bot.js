@@ -1,4 +1,4 @@
-import {     add } from './app.js';
+
 const Discord = require('discord.js');
 const client = new Discord.Client();
 const { Permissions } = require('discord.js');
@@ -63,7 +63,7 @@ function processCommand(receivedMessage) {
     }
 }
 function teste(receivedMessage){
-    add();
+    app.add();
 }
 function essas (x){
 	let y;
