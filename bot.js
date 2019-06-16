@@ -83,13 +83,12 @@ function essas (x){
 function tag(receivedMessage, arguments){
     try {
     var jaison=JSON.parse(Get( "https://gameinfo.albiononline.com/api/gameinfo/search?q={name}".replace("{name}", arguments[1] )));
-    console.log(request( "https://gameinfo.albiononline.com/api/gameinfo/search?q=IvoMastre"));
+   
     }catch(err){
         console.log(err);
     }
     
-    console.log(JSON.stringify(jaison, null, 2));
-    console.log(jaison.players[0].GuildName);
+    
 
     if(receivedMessage.member.roles.find(r => r.name === "NOVATO")){
         receivedMessage.channel.send("Você é um novato, peça para um OFFICER mudar a sua tag");
@@ -165,7 +164,7 @@ function tag(receivedMessage, arguments){
     }else{
         return;
     }
-
+    receivedMessage.channel.send("Parabéns, você virou alguma coisa");
 }
 function Get(yourUrl){
     var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
