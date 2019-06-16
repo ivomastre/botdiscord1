@@ -218,8 +218,12 @@ function add (receivedMessage,arguments){
         }
         console.log('Connection established');
       });
+      let dados = { name: receivedMessage.guild.name, password: arguments[0] };
+    if(con.query('SELECT EXISTS(SELECT * from DBserver WHERE ?)', dados[0] )=='1'){
+        receivedMessage.channel.send("Senha já criada");
+        return;
+    }
     
-    let dados = { name: receivedMessage.guild.name, password: arguments[0] };
     con.query('INSERT INTO DBserver SET ?', dados, (err, res) => {
   if(err) throw err;
 
