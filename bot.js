@@ -5,7 +5,7 @@ const { Permissions } = require('discord.js');
 const permissions = new Permissions(1207959552);
 const http = require('http');
 
-const app= require('./app.js');
+const app= require('app.js');
 const server = http.createServer((request, response) => {
     response.writeHead(200, {"Content-Type": "text/plain"});
     response.end("Hello World\n");
