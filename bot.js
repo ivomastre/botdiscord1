@@ -194,7 +194,7 @@ function update(receivedMessage,arguments){
     });
     con.query(
         'UPDATE DBserver SET password = ? Where name = ?',
-        [arguments[0], receivedMessage.server.name],
+        [arguments[0], receivedMessage.guild.name],
         (err, result) => {
           if (err) throw err;
       
@@ -217,7 +217,7 @@ function add (receivedMessage,arguments){
         console.log('Connection established');
       });
     
-    let dados = { name: receivedMessage.server.name, password: arguments[1] };
+    let dados = { name: receivedMessage.guild.name, password: arguments[1] };
     con.query('INSERT INTO DBserver SET ?', dados, (err, res) => {
   if(err) throw err;
 
