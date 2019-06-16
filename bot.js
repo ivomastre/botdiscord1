@@ -80,7 +80,7 @@ function essas (x){
 	return y;
 }
 function tag(receivedMessage, arguments){
-    var jaison= search(arguments[1]);
+    var jaison= search(arguments[1]).then((results) => console.log(results));
     console.log(JSON.stringify(jaison, null, 2));
     console.log(jaison.players[0].GuildName);
 
