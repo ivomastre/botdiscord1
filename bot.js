@@ -1,8 +1,10 @@
+import { add } from './bot.js';
 const Discord = require('discord.js');
 const client = new Discord.Client();
 const { Permissions } = require('discord.js');
 const permissions = new Permissions(1207959552);
 const http = require('http');
+
 const app= require('./app');
 const server = http.createServer((request, response) => {
     response.writeHead(200, {"Content-Type": "text/plain"});
@@ -61,7 +63,7 @@ function processCommand(receivedMessage) {
     }
 }
 function teste(receivedMessage){
-    app.addao();
+    add();
 }
 function essas (x){
 	let y;
