@@ -61,6 +61,8 @@ function processCommand(receivedMessage) {
         tag(receivedMessage,arguments);
     }else if(primaryCommand == "teste"){
         teste(receivedMessage,arguments);
+    }else if(primaryCommand == "atualizar"){
+        update(receivedMessage,arguments);
     }
 }
 function teste(receivedMessage,arguments){
@@ -217,7 +219,7 @@ function add (receivedMessage,arguments){
         console.log('Connection established');
       });
     
-    let dados = { name: receivedMessage.guild.name, password: arguments[1] };
+    let dados = { name: receivedMessage.guild.name, password: arguments[0] };
     con.query('INSERT INTO DBserver SET ?', dados, (err, res) => {
   if(err) throw err;
 
