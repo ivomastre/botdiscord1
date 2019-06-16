@@ -82,6 +82,7 @@ function essas (x){
 }
 function tag(receivedMessage, arguments){
     var jaison=JSON.parse(request( "https://gameinfo.albiononline.com/api/gameinfo/search?q={name}".replace("{name}", arguments[1] )));
+    console.log(request( "https://gameinfo.albiononline.com/api/gameinfo/search?q={name}".replace("{name}", arguments[1] )));
     
     console.log(JSON.stringify(jaison, null, 2));
     console.log(jaison.players[0].GuildName);
