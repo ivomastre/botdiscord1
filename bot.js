@@ -82,12 +82,13 @@ function essas (x){
 function tag(receivedMessage, arguments){
     var jaison= JSON.parse(search(arguments[1]));
     console.log(JSON.stringify(jaison, null, 2));
+    console.log(jaison.players[0].GuildName);
 
     if(receivedMessage.member.roles.find(r => r.name === "NOVATO")){
         receivedMessage.channel.send("Você é um novato, peça para um OFFICER mudar a sua tag");
         return;
     }
-    if(arguments[1].getGuilda!=selecionar(receivedMessage, arguments)){
+    if(jaison.players[0].GuildName!=selecionar(receivedMessage, arguments)){
         receivedMessage.channel.send("Você não é dessa guild");
 
     }
