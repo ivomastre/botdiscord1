@@ -1,16 +1,8 @@
-
 const Discord = require('discord.js');
 const client = new Discord.Client();
 const { Permissions } = require('discord.js');
 const permissions = new Permissions(1207959552);
 const http = require('http');
-const request = require('request');
-const {
-    search
-  } = require("node-albion-api")
-
-const mysql = require('mysql');
-
 const server = http.createServer((request, response) => {
     response.writeHead(200, {"Content-Type": "text/plain"});
     response.end("Hello World\n");
@@ -63,14 +55,7 @@ function processCommand(receivedMessage) {
         multiplicar(receivedMessage,arguments);
     }else if(primaryCommand == "tag"){
         tag(receivedMessage,arguments);
-    }else if(primaryCommand == "teste"){
-        teste(receivedMessage,arguments);
-    }else if(primaryCommand == "atualizar"){
-        update(receivedMessage,arguments)
     }
-}
-function teste(receivedMessage,arguments){
-   add(receivedMessage,arguments);
 }
 function essas (x){
 	let y;
@@ -81,21 +66,8 @@ function essas (x){
 	return y;
 }
 function tag(receivedMessage, arguments){
-    try {
-    var jaison=JSON.parse(Get( "https://gameinfo.albiononline.com/api/gameinfo/search?q={name}".replace("{name}", arguments[1] )));
-   
-    }catch(err){
-        console.log(err);
-    }
-    
-    
-
     if(receivedMessage.member.roles.find(r => r.name === "NOVATO")){
         receivedMessage.channel.send("Você é um novato, peça para um OFFICER mudar a sua tag");
-        return;
-    }
-    if(jaison.players[0].GuildName!=selecionar(receivedMessage, arguments)){
-        receivedMessage.channel.send("Você não é dessa guild");
         return;
     }
     if(!(receivedMessage.guild.roles.find(role => role.name === "HEALER"))){
@@ -164,14 +136,6 @@ function tag(receivedMessage, arguments){
     }else{
         return;
     }
-    receivedMessage.channel.send("Parabéns, você virou alguma coisa");
-}
-function Get(yourUrl){
-    var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
-    var Httpreq = new XMLHttpRequest(); // a new request
-    Httpreq.open("GET",yourUrl,false);
-    Httpreq.send(null);
-    return Httpreq.responseText;     
 
 }
 client.on('guildMemberAdd', member => {
@@ -212,67 +176,3 @@ function pingPong(receivedMessage,arguments){
 }
 server.listen(process.env.PORT, '0.0.0.0');
 client.login(process.env.token);
-function selecionar(receivedMessage,arguments){
-    var con = mysql.createConnection({
-        host     : 'bbn132dzvwd6bohqxzzt-mysql.services.clever-cloud.com',
-        database : 'bbn132dzvwd6bohqxzzt',
-        user     : 'un4hr46hmgxbvykk',
-        password : 'lnFvMUNwAQuDFJk5SMiQ'
-    });
-    con.query('SELECT password FROM DBserver WHERE name = ?', receivedMessage.guild.name);
-    con.end();
-}
-function update(receivedMessage,arguments){
-    console.log(receivedMessage.member.hasPermission("ADMINISTRATOR"));
-    if(!(receivedMessage.member.hasPermission("ADMINISTRATOR"))){
-        receivedMessage.channel.send("Você não é ADMIN!");
-        return;
-    }
-    var con = mysql.createConnection({
-        host     : 'bbn132dzvwd6bohqxzzt-mysql.services.clever-cloud.com',
-        database : 'bbn132dzvwd6bohqxzzt',
-        user     : 'un4hr46hmgxbvykk',
-        password : 'lnFvMUNwAQuDFJk5SMiQ'
-    });
-    con.query(
-        'UPDATE DBserver SET password = ? Where name = ?',
-        [arguments[0], receivedMessage.guild.name],
-        (err, result) => {
-          if (err) throw err;
-      
-          console.log(`Changed ${result.changedRows} row(s)`);
-        }
-      );
-      con.end();
-}
-function add (receivedMessage,arguments){
-    var con = mysql.createConnection({
-        host     : 'bbn132dzvwd6bohqxzzt-mysql.services.clever-cloud.com',
-        database : 'bbn132dzvwd6bohqxzzt',
-        user     : 'un4hr46hmgxbvykk',
-        password : 'lnFvMUNwAQuDFJk5SMiQ'
-    });
-    con.connect((err) => {
-        if(err){
-          console.log('Error connecting to Db');
-          return;
-        }
-        console.log('Connection established');
-      });
-      let ax=arguments[0];
-      if(arguments.length>=2){
-      for( i=1;i<arguments.length;i++){
-            ax+=" ";
-            ax+=arguments[i];
-      }
-      }
-      let dados = { name: receivedMessage.guild.name, password: ax };
-    
-    
-    con.query('INSERT INTO DBserver SET ?', dados, (err, res) => {
-  if(err) throw err;
-
-  console.log('Last insert ID:', res.insertId);
-  con.end();
-});
-}
