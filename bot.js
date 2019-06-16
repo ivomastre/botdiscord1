@@ -5,7 +5,8 @@ const { Permissions } = require('discord.js');
 const permissions = new Permissions(1207959552);
 const http = require('http');
 
-const app= require('app.js');
+const mysql = require('mysql');
+
 const server = http.createServer((request, response) => {
     response.writeHead(200, {"Content-Type": "text/plain"});
     response.end("Hello World\n");
@@ -63,7 +64,7 @@ function processCommand(receivedMessage) {
     }
 }
 function teste(receivedMessage){
-    app.add();
+   add();
 }
 function essas (x){
 	let y;
@@ -184,3 +185,26 @@ function pingPong(receivedMessage,arguments){
 }
 server.listen(process.env.PORT, '0.0.0.0');
 client.login(process.env.token);
+function add (){
+    var con = mysql.createConnection({
+        host     : 'bbn132dzvwd6bohqxzzt-mysql.services.clever-cloud.com',
+        database : 'bbn132dzvwd6bohqxzzt',
+        user     : 'un4hr46hmgxbvykk',
+        password : 'lnFvMUNwAQuDFJk5SMiQ'
+    });
+    con.connect((err) => {
+        if(err){
+          console.log('Error connecting to Db');
+          return;
+        }
+        console.log('Connection established');
+      });
+    
+    let dados = { name: 'Winnie', password: 'Australia' };
+    con.query('INSERT INTO DBserver SET ?', dados, (err, res) => {
+  if(err) throw err;
+
+  console.log('Last insert ID:', res.insertId);
+  con.end();
+});
+}
