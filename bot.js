@@ -4,6 +4,7 @@ const client = new Discord.Client();
 const { Permissions } = require('discord.js');
 const permissions = new Permissions(1207959552);
 const http = require('http');
+const request = require('request');
 const {
     search
   } = require("node-albion-api")
@@ -80,7 +81,8 @@ function essas (x){
 	return y;
 }
 function tag(receivedMessage, arguments){
-    var jaison= search(arguments[1]).then((results) => console.log(results));
+    var jaison=JSON.parse(request( "https://gameinfo.albiononline.com/api/gameinfo/search?q={name}".replace("{name}", arguments[1] )));
+    
     console.log(JSON.stringify(jaison, null, 2));
     console.log(jaison.players[0].GuildName);
 
