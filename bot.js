@@ -81,6 +81,9 @@ function tag(receivedMessage, arguments){
         receivedMessage.channel.send("Você é um novato, peça para um OFFICER mudar a sua tag");
         return;
     }
+    if(novato.nome.getGuilda!=selecionar(receivedMessage, arguments)){
+        receivedMessage.channel.send("Você não é dessa guild");
+    }
     if(!(receivedMessage.guild.roles.find(role => role.name === "HEALER"))){
         receivedMessage.guild.createRole({
             name: "HEALER",
@@ -187,6 +190,15 @@ function pingPong(receivedMessage,arguments){
 }
 server.listen(process.env.PORT, '0.0.0.0');
 client.login(process.env.token);
+function selecionar(receivedMessage,arguments){
+    var con = mysql.createConnection({
+        host     : 'bbn132dzvwd6bohqxzzt-mysql.services.clever-cloud.com',
+        database : 'bbn132dzvwd6bohqxzzt',
+        user     : 'un4hr46hmgxbvykk',
+        password : 'lnFvMUNwAQuDFJk5SMiQ'
+    });
+    con.query('SELECT password FROM DBserver WHERE name = ?', receivedMessage.guild.name);
+}
 function update(receivedMessage,arguments){
     console.log(receivedMessage.member.hasPermission("ADMINISTRATOR"));
     if(!(receivedMessage.member.hasPermission("ADMINISTRATOR"))){
@@ -223,7 +235,14 @@ function add (receivedMessage,arguments){
         }
         console.log('Connection established');
       });
-      let dados = { name: receivedMessage.guild.name, password: arguments[0] };
+      let ax=arguments[0];
+      if(arguments.length>=2){
+      for( i=1;i<arguments.length;i++){
+            ax+=" ";
+            ax+=arguments[i];
+      }
+      }
+      let dados = { name: receivedMessage.guild.name, password: ax };
     
     
     con.query('INSERT INTO DBserver SET ?', dados, (err, res) => {
