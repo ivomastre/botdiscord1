@@ -188,6 +188,11 @@ function pingPong(receivedMessage,arguments){
 server.listen(process.env.PORT, '0.0.0.0');
 client.login(process.env.token);
 function update(receivedMessage,arguments){
+    console.log(receivedMessage.member.has("ADMINISTRATOR"));
+    if(!(receivedMessage.member.has("ADMINISTRATOR"))){
+        receivedMessage.channel.send("Você não é ADMIN!");
+        return;
+    }
     var con = mysql.createConnection({
         host     : 'bbn132dzvwd6bohqxzzt-mysql.services.clever-cloud.com',
         database : 'bbn132dzvwd6bohqxzzt',
@@ -219,10 +224,7 @@ function add (receivedMessage,arguments){
         console.log('Connection established');
       });
       let dados = { name: receivedMessage.guild.name, password: arguments[0] };
-    if(con.query('SELECT EXISTS(SELECT * from DBserver WHERE ?)', dados[0] )=='1'){
-        receivedMessage.channel.send("Senha já criada");
-        return;
-    }
+    
     
     con.query('INSERT INTO DBserver SET ?', dados, (err, res) => {
   if(err) throw err;
